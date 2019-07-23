@@ -1,12 +1,16 @@
+<<<<<<< HEAD
 # 誤字ミスしたから情報をテーブルやリストにまとめても良いかも
 
 from math import factorial as fact
 
+=======
+>>>>>>> origin/master
 R, C = map(int, input().split(" "))
 X, Y = map(int, input().split(" "))
 D, L = map(int, input().split(" "))
 
 def p(n, k):
+<<<<<<< HEAD
     return fact(n) // fact(n-k)
 def c(n, k):
     return p(n, k) // fact(k)
@@ -75,3 +79,18 @@ print((pattern * floor_pattern)%(10**9+7))
 #     print(t*(a-b-c+D+e+f-g-h+i)%(10**9+7))
 
 ################################
+=======
+    m = 1
+    for i in range(n, N-k, -1):
+        if i == 0:
+            break
+        m *= i
+    return m
+def c(n, k):
+    return p(n, k) // p(k, k)
+def d(n, a, b):
+    return c(N, a) * C(N-a, b)
+
+q = d(X*Y, D, L)
+q -= d((X-1)*Y, D, L)*2 + d(X*(Y-1), D, L)*2
+>>>>>>> origin/master
