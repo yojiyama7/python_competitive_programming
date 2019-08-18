@@ -15,7 +15,7 @@ LIST_in_LIST_int = [list(map(int, input().split(" "))) for _ in range(N)]
 def input_contest_name(num):
     name = CONTEST_NAME_FORMAT.format(num)
     if num == "":
-        print("入力してください")        
+        print("入力してください")      
     elif os.path.isdir(name):
         print("その番号はすでに存在します")
     else:
@@ -25,7 +25,8 @@ def input_contest_name(num):
 def mk_abc_dir(contest_name):
     os.mkdir(contest_name)
     for file_name in FILE_NAMES:
-        with open("{}/".format(contest_name) + FILE_NAME_FORMAT.format(file_name), "w", encoding="utf-8") as f:
+        s = f"{contest_name}/{FILE_NAME_FORMAT.format(file_name)}"
+        with open(s, "w", encoding="utf-8") as f:
             f.write(DEFAULT_TEXT)
 
 
