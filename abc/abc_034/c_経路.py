@@ -1,14 +1,32 @@
+from math import factorial as f
+
 W, H = map(int, input().split(" "))
 
-W, H = W-1, H-1
-a = W+H
+print(f(W+H-2)*pow(f(W-1)*f(H-1), 10**9+7-2, 10**9+7)%(10**9+7))
 
-m = 1
-for i in range(a, W, -1):
-    print(i)
-    m = (m*i)%(10**9+7)
+################################
 
-print(m)
+# # TLE
+
+# from math import factorial as f
+
+# W, H = map(int, input().split(" "))
+
+# print(f(W+H-2)//f(H-1)//f(W-1)%(10**9+7))
+
+################################
+
+# W, H = map(int, input().split(" "))
+
+# W, H = W-1, H-1
+# a = W+H
+
+# m = 1
+# for i in range(a, W, -1):
+#     print(i)
+#     m = (m*i)%(10**9+7)
+
+# print(m)
 
 ################################
 
