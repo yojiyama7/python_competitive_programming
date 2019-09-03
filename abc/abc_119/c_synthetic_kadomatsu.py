@@ -7,12 +7,12 @@ min_num = 10**18
 for i in range(4**N):
     abcz = [[] for _ in range(4)]
     for j in range(N):
-        abcz[i//(4**j)%4].append(L[j])
+        abcz[i//(4**j) % 4].append(L[j])
     if [] in abcz[:3]:
         continue
     # print(abcz)
     m = 0
-    for l, x in zip(abcz, ABC): 
+    for l, x in zip(abcz, ABC):
         m += 10*(len(l)-1) + abs(sum(l)-x)
     # if m < min_num:
     #     print(abcz, m)
@@ -49,7 +49,7 @@ print(min_num)
 #         # if sum_num < min_num:
 #             # print(l)
 #         min_num = min(min_num, sum_num)
- 
+
 # print(min_num)
 
 ################################
