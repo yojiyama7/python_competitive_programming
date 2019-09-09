@@ -4,13 +4,7 @@ import os.path
 CONTEST_NAME_FORMAT = "abc_{:0>3}"
 FILE_NAME_FORMAT = "{}_.py"
 FILE_NAMES = "abcdef"
-DEFAULT_TEXT = """# inputs
-STRING = input()
-NUMBER = int(input())
-LIST_ONE_LINE_int = list(map(int, input().split(" ")))
-LIST_in_LIST_int = [list(map(int, input().split(" "))) for _ in range(N)]
-"""
-
+DEFAULT_TEXT = ""
 
 def input_contest_name(num):
     name = CONTEST_NAME_FORMAT.format(num)
