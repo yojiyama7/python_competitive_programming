@@ -30,3 +30,17 @@ class UnionFind:
 
     def get_size(self, x):
         return self.size[self.root(x)]
+
+N, M = map(int, input().split())
+P = list(map(int, input().split()))
+XY = [list(map(int, input().split())) for _ in range(M)]
+
+uf = UnionFind(N)
+for x, y in XY:
+    uf.unite(x-1, y-1)
+
+c = 0
+for i, p in enumerate(P):
+    c += uf.is_same(i, p-1)
+
+print(c)
