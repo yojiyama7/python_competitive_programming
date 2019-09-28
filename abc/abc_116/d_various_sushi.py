@@ -1,5 +1,5 @@
 # ヒープ以降をどう実装するかわからんな
-
+# キレそう。heap in heap とか？ 考えてからコード書いた方が良さげ
 
 def swap(array, i, j):
     array[i], array[j] = array[j], array[i]
@@ -7,12 +7,12 @@ def swap(array, i, j):
 
 class Heap:
     def __init__(self, nums=[]):
+        self.is_used = False
         self.size = 0
         self.nums = []
         for num in nums:
             self.insert(num)
 
-    
     def insert(self, num):
         self.nums.append(num)
         self.size += 1
@@ -22,23 +22,12 @@ class Heap:
             swap(self.nums, i, (i-1)//2)
             i = (i-1)//2
 
-
     def __repr__(self):
         return f'<{" ".join(map(str, self.nums))}>'
-        # m = 0
-        # i = 0
-        # t = []
-        # while m <= self.size:
-        #     t.append(self.nums[m:m+2**i])
-        #     m += 2**i
-        #     i += 1
-        # return "\n".join(" ".join(map(str, p)) for p in t)
-
 
     def get_root(self):
         return self.nums[0]
 
-    
     def pop_root(self):
         print(f"size: {self.size}")
         if self.size == 0:
@@ -60,7 +49,19 @@ class Heap:
             i = c1
         self.nums[i] = v
         return root
-
+    
+    def __lt__(self, other):
+        return self.get_root() < other.get_root()
+    def __le__(self, other):
+        return self.get_root() <= other.get_root()
+    def __eq__(self, other):
+        return self.get_root() == other.get_root()
+    def __ne__(self, other):
+        return self.get_root() != other.get_root()
+    def __gt__(self, other):
+        return self.get_root() > other.get_root()
+    def __ge__(self, other):
+        return self.get_root() >= other.get_root()
 
 
 # l = list(range(32, -1, -1))[::-1]
@@ -74,17 +75,13 @@ class Heap:
 N, K = map(int, input().split())
 TD = [list(map(int, input().split())) for _ in range(N)]
 
-s = dict()
+e = [Heap() for _ in range(N+1)]
 for t, d in TD:
-    if t not in s:
-        s[t] = Heap()
-    s[t].insert(d)
+    e[t].insert(d)
+hq = Heap(e)
 
-l = sorted(s.values(), key=lambda x: x.get_root(), reverse=True)
-# print(l)
-
-h = Heap()
-for i in range(len(l)):
-    for num in l[i].nums:
-        h.insert(num)
-    
+added_hq = Heap()
+score = 0
+for i in range(K):
+    r = hq.pop_root()
+    score += r.pop_root()
