@@ -1,3 +1,18 @@
+N, K = map(int, input().split())
+
+if K == 0:
+    print(N**2)
+    exit()
+
+c = 0 
+for b in range(1, N+1):
+    c += max(0, b-K)*(N//b) + max(0, (N%b)-K+1)
+    # print(b, c)
+
+print(c)
+
+################################
+
 # なぜか分からない、一時的なものだと思いさんぽへGO。
 
 # N, K = map(int, input().split())
