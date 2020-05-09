@@ -1,3 +1,35 @@
+# H, W, T = map(int, input().split(" "))
+# S = [input() for _ in range(H)]
+
+# BIG_NUM = 10**18
+
+# for i, l in enumerate(S):
+#     if "S" in l:
+#         start_pos = start_x, start_y = (l.find("S"), i)
+#         break
+
+# ADS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+# def dfs(x):
+#     m = [[BIG_NUM for _ in range(W)] for _ in range(H)]
+#     m[start_y][start_x] = 0
+#     q = [start_pos]
+#     while q:
+#         this_pos = this_x, this_y = q.pop()
+#         if S[this_y][this_x] == "G":
+#             return 
+
+#         for ad_x, ad_y in ADS:
+#             pos = x, y = this_x+ad_x, this_y+ad_y
+#             if not (0 <= x < W and 0 <= y < H):
+#                 continue
+#             if m[y][x] == BIG_NUM:
+#                 continue
+#             m[y][x] = min(
+#                 m[y][x],
+#                 m[this_y][this_x] + (x if S[y][x] == "#" else 1)
+#             )
+#             q.append(pos)
+
 ################################
 
 # H, W, T = map(int, input().split(" "))

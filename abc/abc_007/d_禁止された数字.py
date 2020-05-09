@@ -1,3 +1,21 @@
+# 桁DP
+# DPわからん
+A, B = map(int, input().split())
+
+def count_one_to_n(n):
+    digit_length = len(n)
+    # i桁目まで
+    dp = [[0]*2 for _ in range(32)]
+    for i, d in enumerate(n):
+        d = int(d)
+        for j in range(10):
+            if j > d:
+                break
+            if j in [4, 9]:
+                dp[i][dj] += 1
+
+
+
 ########################################
 
 # # NO JUDGE
