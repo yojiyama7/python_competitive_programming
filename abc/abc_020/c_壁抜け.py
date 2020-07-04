@@ -1,3 +1,70 @@
+# 20200704
+from heapq import *
+
+class HeapQueue:
+    def __init__(self, l=[], key=lambda x:x):
+        self.key = key
+        self.l = [(self.key(l_i), l_i) for l_i in l]
+        heapify(self.l)
+    
+    def push(self, v):
+        heappush(self.l, (self.key(v), v))
+    
+    def pop(self):
+        if self.l:
+            _, v = heappop(self.l)
+            return v
+    
+    def __bool__(self):
+        return (len(self.l) != 0)
+    
+D_POS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+H, W, T = map(int, input().split())
+S = [input() for _ in range(H)]
+
+s_pos = s_x, s_y = (None, None)
+g_pos = g_x, g_y = (None, None)
+for y, line in enumerate(S):
+    for x, c in enumerate(line):
+        if c == "S":
+            s_pos = s_x, s_y = (x, y)
+        elif c == "G":
+            g_pos = g_x, g_y = (x, y)
+
+
+def solve(t):
+    r = [[10**18 for _ in range(W)] for _ in range(H)]
+    r[s_y][s_x] = 0
+    q = HeapQueue([s_pos], key=lambda pos: r[pos[1]][pos[0]])
+    while q:
+        tx, ty = q.pop()
+        tr = r[ty][tx]
+
+        for dx, dy in D_POS:
+            x, y = tx+dx, ty+dy
+            if not (0 <= x < W and 0 <= y < H):
+                continue
+            nr = tr + (t if S[y][x] == "#" else 1)
+            if not (nr < r[y][x]):
+                continue
+            r[y][x] = nr
+            q.push((x, y))
+    # print(r)
+    return (r[g_y][g_x] <= T)
+
+ok, ng = 1, T+1
+while abs(ok-ng) > 1:
+    mid = (ok+ng)//2
+    if solve(mid):
+        ok = mid
+    else:
+        ng = mid
+
+print(ok)
+
+########################################
+
 # H, W, T = map(int, input().split(" "))
 # S = [input() for _ in range(H)]
 
