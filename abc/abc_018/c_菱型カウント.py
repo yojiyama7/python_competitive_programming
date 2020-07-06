@@ -1,3 +1,37 @@
+# 20200704
+from itertools import accumulate as acc
+
+R, C, K = map(int, input().split())
+S = [input() for _ in range(R)]
+# R, C, K = 500, 500, 100
+# S = [" "*C for _ in range(R)]
+
+h, w = R, C
+
+figure_size = 2*K-1
+figure_size_half = K-1
+
+S_acc = [[0]+list(acc(s_i=="x" for s_i in s)) for s in S]
+
+count = 0
+for ty in range(h-figure_size+1):
+    for tx in range(w-figure_size+1):
+        flag = True
+        for dy in range(figure_size):
+            y = ty+dy
+            xl, xr = tx+abs(figure_size_half-dy), tx+figure_size-abs(figure_size_half-dy)
+            # print(y, (xl, xr))
+            if (S_acc[y][xr] - S_acc[y][xl]) > 0:
+                flag = False
+                break
+        # print(flag)
+        if flag:
+            count += 1
+
+print(count)
+
+########################################
+
 # 判定が複雑な探索は、判定を簡易化しておく
 # あらかじめで計算しておいて、それを参照して判定
 
