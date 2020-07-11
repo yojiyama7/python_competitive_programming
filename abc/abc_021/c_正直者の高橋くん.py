@@ -1,3 +1,41 @@
+from collections import deque
+
+N = int(input())
+A, B = map(int, input().split())
+M = int(input())
+XY = [list(map(int, input().split())) for _ in range(M)]
+
+g = [set() for _ in range(N)]
+for x, y in XY:
+    x, y = x-1, y-1
+    g[x].add(y)
+    g[y].add(x)
+
+counts = [0]*N
+counts[A-1] = 10**18
+r = [10**18]*N
+r[A-1] = 0
+q = deque([A-1])
+while q:
+    tn = q.popleft()
+    tr = r[tn]
+
+    for cn in g[tn]:
+        if cn == tn:
+            continue
+        if r[cn] <= tr:
+            continue
+        if counts == 0:
+            q.append(cn)
+        counts[cn] += 1
+
+print(r)
+
+
+
+
+##################################################
+
 # これDPとかなの？ まあWAくらってるけどさ
 
 ################################
