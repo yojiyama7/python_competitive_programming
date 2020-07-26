@@ -1,12 +1,12 @@
 from collections import deque
-
+ 
 MOD = 10**9+7
-
+ 
 N = int(input())
 A, B = map(int, input().split())
 M = int(input())
 XY = [list(map(int, input().split())) for _ in range(M)]
-
+ 
 # N = 12
 # A, B = 1, 12
 # XY = [
@@ -30,15 +30,15 @@ XY = [list(map(int, input().split())) for _ in range(M)]
 #     (9, 12)
 # ]
 # M = len(XY)
-
+ 
 start, goal = A-1, B-1
-
+ 
 g1 = [set() for _ in range(N)]
 for x, y in XY:
     x, y = x-1, y-1
     g1[x].add(y)
     g1[y].add(x)
-
+ 
 count = [0]*N
 count[start] = 1
 dist = [10**18]*N
@@ -48,14 +48,14 @@ while q:
     t = q.popleft()
     t_dist = dist[t]
     t_count = count[t]
-
+ 
     for c in g1[t]:
         if dist[c] > t_dist + 1:   
             dist[c] = t_dist + 1
             q.append(c)
         if dist[c] == t_dist + 1:
             count[c] = (count[c] + t_count) % MOD
-
+ 
 # print(dist)
 # print(count)
 print(count[goal])
