@@ -30,5 +30,3 @@ class UnionFind:
 
     def get_size(self, x):
         return self.size[self.root(x)]
-
-################################
