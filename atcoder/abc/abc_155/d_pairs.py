@@ -1,3 +1,7 @@
+# 正負の数の積に関するものは、積が負, 0, 正になるパターンで場合分けする
+
+# K番目(二分探索感)
+
 N, K = map(int, input().split())
 A = list(map(int, input().split()))
 A.sort()
