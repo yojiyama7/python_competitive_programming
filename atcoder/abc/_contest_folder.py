@@ -1,6 +1,5 @@
 import os.path
 
-
 CONTEST_NAME_FORMAT = "abc_{:0>3}"
 FILE_NAME_FORMAT = "{}_.py"
 FILE_NAMES = "abcdef"
