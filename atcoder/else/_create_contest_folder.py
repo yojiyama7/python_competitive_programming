@@ -88,6 +88,7 @@ def create_contest_files(url):
     contest_name = convert_id_to_name(contest_id)
     folder_path = os.path.join(current_path, contest_name)
     if contest_id in all_problems_by_contest_id:
+        problems = all_problems_by_contest_id[contest_id]
         for problem in problems:
             problem_title = problem["title"]
             print(problem_title)
