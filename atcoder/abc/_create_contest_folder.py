@@ -29,8 +29,10 @@ def main():
     #         rename_contest_files()
     if check_if_valid_url(input_text):
         if is_already_exists(input_text):
+            print("rename")
             rename_contest_files(input_text)
         else:
+            print("create")
             create_contest_folder(input_text)
     else:
         print("This url is invalid.")
@@ -68,9 +70,10 @@ def rename_contest_files(url):
     contest_id = convert_url_to_contest_id(url)
     contest_name = convert_id_to_name(contest_id)
     folder_path = os.path.join(current_path, contest_name)
+    # print(all_problems_by_contest_id[contest_id])
     for problem in all_problems_by_contest_id[contest_id]:
         problem_title = problem["title"]
-        # print(problem_title)
+        print(problem_title)
         problem_name = convert_id_to_name(problem_title)
         problem_old_file_path = os.path.join(folder_path, f"{problem_name[:2]}.py")
         problem_new_file_path = os.path.join(folder_path, f"{problem_name}.py")
