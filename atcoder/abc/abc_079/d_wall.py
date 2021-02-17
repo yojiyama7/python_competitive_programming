@@ -1,3 +1,13 @@
+H, W = map(int, input().split())
+C = [list(map(int, input().split())) for _ in range(10)]
+A = [list(map(int, input().split())) for _ in range(H)]
+
+dist = [[INF for _ in range(10)] for _ in range(10)]
+for s in range(10):
+	
+
+################################
+
 # ワーシャルフロイド法などで最短経路探索もあり。
 # dijkstraもありか、scipy(サイパイ)すごそう。
 # 最短経路むずい。
