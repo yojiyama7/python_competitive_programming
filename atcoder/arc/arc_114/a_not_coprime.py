@@ -1,3 +1,5 @@
+# 貪欲っぽく見えるが、制約に余裕のあるものをbit全探索する
+
 INF = float('inf')
 
 N = int(input())
