@@ -1,12 +1,22 @@
+# 辺を数える
+
+from itertools import groupby
+
 H, W = map(int, input().split())
 S = [input() for _ in range(H)]
 
+cnt = 0
+for y in range(H-1):
+    cnt += len(list(groupby(S[y][x] == S[y+1][x] for x in range(W-1)))) // 2
+for x in range(W-1):
+    cnt += len(list(groupby(S[y][x] == S[y][x+1] for y in range(H-1)))) // 2
 
+print(cnt)
 
 ################################
 
 # 辺数えるほうが何言ってるかわかりやすいな
-# 頂点基準の解放も何を言っているかぐらいはわかりたい
+# 頂点基準の解法も何を言っているかぐらいはわかりたい
 
 # # WA
 
