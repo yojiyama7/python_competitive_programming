@@ -1,12 +1,22 @@
+def pattern(c):
+	if c.isalpha():
+		return 0
+	if c.isdigit():
+		return 1
+	return 2
+
 def to_snake_case(s):
 	l = []
 	t = ""
+	b = -1
 	for c in s.lower():
-		if c.isalnum():
-			t += c
-		elif t:
-			l.append(t)
+		if pattern(c) == 2 or b != pattern(c):
+			if t:
+				l.append(t)
 			t = ""
+		if pattern(c) in [0, 1]:
+			t += c
+		b = pattern(c)
 	if t:
 		l.append(t)
 

@@ -1,3 +1,5 @@
+from heapq import *
+
 class HeapMin:
     def __init__(self, l):
         self.l = l
