@@ -23,7 +23,7 @@ class SegmentTree:
             x //= 2
             self.update_one_node(x)
         # print(self.tree)
-    
+
     def find(self, rl, rr):
         # print(f"find: [{rl}, {rr})")
         # print(self.tree[self.n:])

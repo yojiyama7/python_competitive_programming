@@ -3,13 +3,13 @@ class Bit:
     def __init__(self, n):
         self.n = n
         self.array = [0]*(n+1)
-    
+
     def add(self, x, w=1):
         # print(f"{id(self)}: Bit.add({x}, {w})")
         while (x <= self.n):
             self.array[x] += w
             x += (x & -x)
-    
+
     def sum(self, x, y=None):
         # print(f"{id(self)}: Bit.sum({x}, {y})")
         if y == None:
@@ -22,32 +22,6 @@ class Bit:
         else:
             # x~y
             return self.sum(y) - self.sum(x-1)
-
-# 1-indexed 閉区間 add_range sum_point
-class Bit:
-    def __init__(self, n):
-        self.n = n
-        self.array = [0]*(n+1)
-    
-    def add(self, x, w=1):
-        # print(f"{id(self)}: Bit.add({x}, {w})")
-        while (x <= self.n):
-            self.array[x] += w
-            x += (x & -x)
-    
-    def sum(self, x, y=None):
-        # print(f"{id(self)}: Bit.sum({x}, {y})")
-        if y == None:
-            # 1~x
-            sum_num = 0
-            while (x > 0):
-                sum_num += self.array[x]
-                x -= (x & -x)
-            return sum_num
-        else:
-            # x~y
-            return self.sum(y) - self.sum(x-1)
-
 
 if __name__ == "__main__":
     # JUDGE: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B&lang=jp
@@ -62,12 +36,12 @@ if __name__ == "__main__":
             bit.add(x, y)
         else:
             print(bit.sum(x, y))
-    
+
     ################################
 
     # bit = Bit(0)
     # print(bit.sum(0))
-    
+
     # bit = Bit(1)
     # bit.add(1)
     # print(bit.sum(0))

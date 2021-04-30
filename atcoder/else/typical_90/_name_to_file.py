@@ -25,6 +25,9 @@ def to_snake_case(s):
 
 S = input()
 
+if S == "":
+	exit()
+
 file_name = "_" + to_snake_case(S) + ".py"
 with open(file_name, "w+", encoding="utf-8") as f:
 	pass
