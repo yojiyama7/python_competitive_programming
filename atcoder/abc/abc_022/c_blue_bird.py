@@ -1,50 +1,114 @@
-<<<<<<< HEAD
-# numpy, scipy での最短経路探索
+# ワーシャルフロイド最強卍
 
-# from scipy.sparse import csr_matrix
-# from scipy.sparse.csgraph import floyd_warshall
-=======
-import heapq
-
-class HeapQueue:
-    def __init__(self, l=[], key=lambda x: x):
-        self.key = key
-        self.l = heapq.heapify([(self.key(l_i), l_i) for l_i in l])
-    
-    def pop(self):
-        _, v heapq.heappop(self.l):
-        return v
-    
-    def push(self, v):
-        heapq.heappush(self.l, (self.key(v), v))
-    
-    def __bool__(self):
-        return bool(self.l)
+INF = float("inf")
 
 N, M = map(int, input().split())
 UVL = [list(map(int, input().split())) for _ in range(M)]
 
-graph = [[10**18 for _ in range(300)] for _ in range(300)]
-start_goal = set()
+dist = [[INF for j in range(N)] for i in range(N)]
+h = set()
 for u, v, l in UVL:
-    u, v = u-1, v-1
-    graph[u][v] = l
-    graph[v][u] = l
-    if u == 0:
-        start_goal.add(v)
+	u, v = u-1, v-1
+	if u == 0:
+		h.add((v, l))
+	elif v == 0:
+		h.add((u, l))
+	else:
+		dist[u][v] = l
+		dist[v][u] = l
 
-for start in start_goal:
+for k in range(N):
+	for i in range(N):
+		for j in range(N):
+			if dist[i][j] > dist[i][k] + dist[k][j]:
+				dist[i][j] = dist[i][k] + dist[k][j]
 
+min_num = INF
+for s, s_cost in h:
+	for g, g_cost in h:
+		if s == g:
+			continue
+		min_num = min(
+			s_cost + dist[s][g] + g_cost,
+			min_num
+		)
+print(-1 if min_num == INF else min_num)
 
 ################################
 
-# 頂点1に属した頂点たちから、2つ選んで最短ルートさがして、その2頂点の頂点1まで距離を足す
-# 全通りやって最短を出力 までは見たことあるんだけど
-# 実装がねぇ、、、
+# もしかしてワーシャルフロイドのみ許される？
 
-# N, M = map(int, input().split(" "))
-# UVL = [tuple(map(int, input().split(" "))) for _ in range(m)]
->>>>>>> 4108602f3a85210cd5f3a97b4c71ef3cde2a806d
+# from heapq import *
+
+# class HeapMin:
+#     def __init__(self, l=[], key=lambda x:x):
+#         self.key = key
+#         self.l = [(self.key(l_i), l_i) for l_i in l]
+#         heapify(self.l)
+
+#     def push(self, v):
+#         heappush(self.l, (self.key(v), v))
+
+#     def pop(self):
+#         _, r = heappop(self.l)
+#         return r
+
+#     def __bool__(self):
+#         return len(self.l) > 0
+
+# INF = float("inf")
+
+# N, M = map(int, input().split())
+# UVL = [list(map(int, input().split())) for _ in range(M)]
+
+# g = [set() for _ in range(N)]
+# h = set()
+# h_dist = [INF]*N
+# for u, v, l in UVL:
+# 	u, v = u-1, v-1
+# 	if u == 0:
+# 		h.add(v)
+# 		h_dist[v] = l
+# 	else:
+# 		g[u].add((v, l))
+# 	if v == 0:
+# 		h.add(u)
+# 		h_dist[u] = l
+# 	else:
+# 		g[v].add((u, l))
+
+# min_num = INF
+# for start in h:
+# 	dist = [INF]*N
+# 	dist[start] = 0
+# 	q = HeapMin([(0, start)])
+# 	while q:
+# 		t_dist, t = q.pop()
+# 		if t_dist > dist[t]:
+# 			continue
+# 		for to, cost in g[t]:
+# 			if to == 0:
+# 				continue
+# 			if dist[to] < t_dist + cost:
+# 				continue
+# 			dist[to] = t_dist + cost
+# 			q.push((dist[to], to))
+# 	for goal in h:
+# 		if start == goal:
+# 			continue
+# 		# print([start, goal, dist[goal]])
+# 		min_num = min(
+# 			h_dist[start] + dist[goal] + h_dist[goal],
+# 			min_num
+# 		)
+# print(-1 if min_num == INF else min_num)
+
+################################
+
+# numpy, scipy での最短経路探索
+
+# from scipy.sparse import csr_matrix
+# from scipy.sparse.csgraph import floyd_warshall
 
 # N, M = map(int, input().split())
 # UVL = [list(map(int, input().split())) for _ in range(M)]
