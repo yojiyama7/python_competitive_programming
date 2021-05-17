@@ -1,3 +1,75 @@
+INF = float("inf")
+
+B = [list(map(int, input().split())) for _ in range(2)]
+C = [list(map(int, input().split())) for _ in range(3)]
+
+memo = [None for _ in range(3**9)]
+def solve(i, m):
+# 	print(i)
+# 	print(*m, sep='\n')
+	z = 0
+	for idx in range(9):
+		x, y = idx%3, idx//3
+		z *= 3
+		z += m[y][x]
+	if memo[z]:
+		return (memo[z])
+	if i == 9:
+		t, n = 0, 0
+		for y in range(2):
+			for x in range(3):
+				if m[y][x] == m[y+1][x]:
+					t += B[y][x]
+				else:
+					n += B[y][x]
+		for y in range(3):
+			for x in range(2):
+				if m[y][x] == m[y][x+1]:
+					t += C[y][x]
+				else:
+					n += C[y][x]
+		# if (t, n) == (15, 80):
+			# print(t, n)
+			# print(*m, sep='\n')
+		memo[z] = (t, n)
+		return memo[z]
+	if i%2:
+		# naoko
+		ans = (-1, -1)
+		diff_max = -INF
+		for y in range(3):
+			for x in range(3):
+				if m[y][x] == 0:
+					m[y][x] = 2
+					t, n = solve(i+1, m)
+					m[y][x] = 0
+					if diff_max < n - t:
+						ans = (t, n)
+						diff_max = n - t
+		memo[z] = ans
+		return (memo[z])
+	else:
+		# tyokudai
+		ans = (-1, -1)
+		diff_max = -INF
+		for y in range(3):
+			for x in range(3):
+				if m[y][x] == 0:
+					m[y][x] = 1
+					t, n = solve(i+1, m)
+					m[y][x] = 0
+					if diff_max < t - n:
+						ans = (t, n)
+						diff_max = t - n
+		memo[z] = ans
+		return (memo[z])
+
+m = [[0 for _ in range(3)] for _ in range(3)]
+ans = solve(0, m)
+print(*ans, sep='\n')
+
+################################
+
 # 惜しい。遅い。
 
 # B = [list(map(int, input().split())) for _ in range(2)]
