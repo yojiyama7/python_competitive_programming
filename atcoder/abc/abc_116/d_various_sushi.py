@@ -4,7 +4,6 @@
 def swap(array, i, j):
     array[i], array[j] = array[j], array[i]
 
-
 class Heap:
     def __init__(self, nums=[]):
         self.is_used = False
@@ -49,7 +48,7 @@ class Heap:
             i = c1
         self.nums[i] = v
         return root
-    
+
     def __lt__(self, other):
         return self.get_root() < other.get_root()
     def __le__(self, other):
