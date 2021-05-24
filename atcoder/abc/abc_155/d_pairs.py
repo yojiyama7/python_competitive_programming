@@ -1,3 +1,4 @@
+# PyPyで時間ギリギリだった
 # 実装 重い
 
 from bisect import bisect_left, bisect_right
