@@ -1,3 +1,5 @@
+# AC
+
 from heapq import *
 
 # ここは有限じゃないとダメ ネーミングはINFでいいのか問題
@@ -62,6 +64,8 @@ print(max_score)
 
 ################################
 
+# # この方針(番兵なし)でクリアできないのかしら
+
 # # あんまり凝った実装にしない方が良い
 # # シンプル(直感的)に実装した方が良さげ
 
@@ -108,13 +112,13 @@ print(max_score)
 # score = sum(max_point[:max_type])
 # # print((K, score))
 # max_num = score + max_type**2
-# for x in reversed(range(max_type)):
-#     if max_point[x] >= q.top():
-#         continue
-#     score += q.pop()
-#     score -= max_point[x]
-#     q.push(max_point[x])
-#     # print((x, score))
+# for x in reversed(range(1, max_type)):
+#     if max_point[x] < q.top():
+#         score += q.pop()
+#         score -= max_point[x]
+#         q.push(max_point[x])
+#         # print((x, score))
+#     print((x, score))
 #     max_num = max(max_num, score + x**2)
 
 # print(max_num)
