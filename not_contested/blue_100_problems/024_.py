@@ -1,3 +1,5 @@
+# https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_11_B
+
 N = int(input())
 U = [list(map(int, input().split())) for _ in range(N)]
 
