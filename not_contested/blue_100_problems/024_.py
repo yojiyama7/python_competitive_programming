@@ -14,7 +14,7 @@ def dfs(x):
     if in_time[x]:
         return
     in_time[x] = time
-    time += 1 
+    time += 1
     for to in g[x]:
         dfs(to)
     out_time[x] = time
