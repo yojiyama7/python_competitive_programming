@@ -1,3 +1,7 @@
+# N頂点集合のi番目が Xi, Yi だとする
+# 図形の重心は (SUM(X1~XN)/N, SUM(Y1~YN)/N) である
+# 2つの図形の重心を求めて重ね、回転によって一致するか考える
+
 # 図形の重心がキモっぽい　知らんわｋす
 
 from math import radians, atan2, cos, sin
