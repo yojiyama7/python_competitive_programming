@@ -1,3 +1,45 @@
+from collections import deque
+
+WIN, LOSE, DRAW = range(3)
+P = 52**3
+
+N = int(input())
+S = [input() for _ in range(N)]
+
+def to_num_inner(c):
+    if ord('a') <= ord(c) <= ord('z'):
+        return ord(c) - ord('a')
+    else:
+        return ord(c) - ord('A') + 26
+
+def to_num(t):
+    x = 0
+    for i, t_i in enumerate(t):
+        x += 52**i * to_num_inner(t_i)
+    return x
+
+g = [set() for _ in range(P)]
+g_rev = [set() for _ in range(P)]
+for s in S:
+    f, t = to_num(s[:3]), to_num(s[-3:])
+    g[f].add(t)
+    g[t].add(f)
+
+score = [-1]*P
+q = deque()
+for i in range(P):
+    if g[i]:
+        continue
+    score[i] = LOSE
+    q.append(i)
+
+while q:
+    t = q.popleft()
+
+    l = [0, 0, 0]
+    for to in g_rev[t]:
+        
+
 ################################
 
 # # import sys
