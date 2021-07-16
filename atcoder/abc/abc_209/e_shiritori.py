@@ -1,44 +1,70 @@
-from collections import deque
 
-WIN, LOSE, DRAW = range(3)
-P = 52**3
 
-N = int(input())
-S = [input() for _ in range(N)]
+################################
 
-def to_num_inner(c):
-    if ord('a') <= ord(c) <= ord('z'):
-        return ord(c) - ord('a')
-    else:
-        return ord(c) - ord('A') + 26
+# from collections import deque
 
-def to_num(t):
-    x = 0
-    for i, t_i in enumerate(t):
-        x += 52**i * to_num_inner(t_i)
-    return x
+# WIN, LOSE, DRAW = range(3)
+# P = 52**3
 
-g = [set() for _ in range(P)]
-g_rev = [set() for _ in range(P)]
-for s in S:
-    f, t = to_num(s[:3]), to_num(s[-3:])
-    g[f].add(t)
-    g[t].add(f)
+# N = int(input())
+# S = [input() for _ in range(N)]
 
-score = [-1]*P
-q = deque()
-for i in range(P):
-    if g[i]:
-        continue
-    score[i] = LOSE
-    q.append(i)
+# def to_num_inner(c):
+#     if ord('a') <= ord(c) <= ord('z'):
+#         return ord(c) - ord('a')
+#     else:
+#         return ord(c) - ord('A') + 26
 
-while q:
-    t = q.popleft()
+# def to_num(t):
+#     x = 0
+#     for i, t_i in enumerate(t):
+#         x += 52**i * to_num_inner(t_i)
+#     return x
 
-    l = [0, 0, 0]
-    for to in g_rev[t]:
-        
+# g = [set() for _ in range(P)]
+# # g における 自分の子供のうち まだ score が定まっていないもの の個数
+# cnt = [0]*P
+# g_rev = [set() for _ in range(P)]
+# for s in S:
+#     f, t = to_num(s[:3]), to_num(s[-3:])
+#     g[f].add(t)
+#     cnt[f] += 1
+#     g_rev[t].add(f)
+
+# score = [DRAW]*P
+# q = deque()
+# for i in range(P):
+#     if cnt[i] == 0:
+#         q.append(i)
+
+# # 結果が決定した場所 + そこと連結な場所 について答えを考える必要がある (qに入る必要がある)
+# while q:
+#     t = q.popleft()
+
+#     l = [0, 0, 0]
+#     for to in g[t]:
+#         l[score[to]] += 1
+#     win, lose, draw = l
+#     if lose:
+#         score[t] = WIN
+#     elif lose+draw == 0:
+#         score[t] = LOSE
+#     else:
+#         score[t] = DRAW
+#     for to in g_rev[t]:
+#         cnt[to] -= 1
+#         if cnt[to] == 0:
+#             q.append(to)
+
+# for s in S:
+#     ans = score[to_num(s[-3:])]
+#     if ans == WIN:
+#         print("Aoki")
+#     elif ans == LOSE:
+#         print("Takahashi")
+#     else:
+#         print("Draw")
 
 ################################
 
