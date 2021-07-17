@@ -1,39 +1,80 @@
-# N頂点集合のi番目が Xi, Yi だとする
-# 図形の重心は (SUM(X1~XN)/N, SUM(Y1~YN)/N) である
-# 2つの図形の重心を求めて重ね、回転によって一致するか考える
-
-# 図形の重心がキモっぽい　知らんわｋす
-
-from math import radians, atan2, cos, sin
+from math import atan2
 
 N = int(input())
 AB = [list(map(int, input().split())) for _ in range(N)]
 CD = [list(map(int, input().split())) for _ in range(N)]
 
-def rotate(p, deg):
-    x, y = p
-    d = atan2(y, x) + radians(deg)
-    r = (x**2 + y**2) ** (1/2)
-    a, b = cos(d)*r, sin(d)*r
-    return (a, b)
+A, B = zip(*AB)
+C, D = zip(*CD)
 
-sx, sy = AB[0]
-p = [(a-sx, b-sy) for a, b in AB]
-for i in range(3600):
-    deg = i/10
-    # print(deg)
-    for sc, sd in CD:
-        q = []
-        for c, d in CD:
-            q.append((c-sc, d-sd))
-        q = list(map(lambda x: rotate(x, deg), q))
-        if deg == 90:
-            print(p, q)
-        if all(abs(x-a) <= 10**-4 and abs(b-y) <= 10**-4 for (x, y), (a, b) in zip(p, q)):
-            print("Yes")
-            exit()
+s_xy = [(a*N, b*N) for a, b in AB]
+t_xy = [(c*N, d*N) for c, d in CD]
 
-print("No")
+# 座標を N 倍した時の S と T の重心
+scx, scy = sum(A), sum(B)
+tcx, tcy = sum(C), sum(D)
+
+# (distance, angle) 重心からの距離と angle
+s_da = []
+for x, y in s_xy:
+    x -= scx
+    y -= scy
+    d = x**2 + y**2
+    a = atan2(y, x)
+    s_da.append((d, a))
+t_da = []
+for x, y in t_xy:
+    x -= tcx
+    y -= tcy
+    d = x**2 + y**2
+    a = atan2(y, x)
+    t_da.append((d, a))
+
+s_da.sort()
+t_da.sort()
+
+for s_da_i, t_da_i in zip(s_da, t_da):
+    
+
+
+################################
+
+# # N頂点集合のi番目が Xi, Yi だとする
+# # 図形の重心は (SUM(X1~XN)/N, SUM(Y1~YN)/N) である
+# # 2つの図形の重心を求めて重ね、回転によって一致するか考える
+
+# # 図形の重心がキモっぽい　知らんわｋす
+
+# from math import radians, atan2, cos, sin
+
+# N = int(input())
+# AB = [list(map(int, input().split())) for _ in range(N)]
+# CD = [list(map(int, input().split())) for _ in range(N)]
+
+# def rotate(p, deg):
+#     x, y = p
+#     d = atan2(y, x) + radians(deg)
+#     r = (x**2 + y**2) ** (1/2)
+#     a, b = cos(d)*r, sin(d)*r
+#     return (a, b)
+
+# sx, sy = AB[0]
+# p = [(a-sx, b-sy) for a, b in AB]
+# for i in range(3600):
+#     deg = i/10
+#     # print(deg)
+#     for sc, sd in CD:
+#         q = []
+#         for c, d in CD:
+#             q.append((c-sc, d-sd))
+#         q = list(map(lambda x: rotate(x, deg), q))
+#         if deg == 90:
+#             print(p, q)
+#         if all(abs(x-a) <= 10**-4 and abs(b-y) <= 10**-4 for (x, y), (a, b) in zip(p, q)):
+#             print("Yes")
+#             exit()
+
+# print("No")
 
 ################################
 
