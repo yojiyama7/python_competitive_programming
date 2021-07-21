@@ -17,3 +17,4 @@ for i in range(N-K):
     ans = max(score, ans)
 
 print(ans)
+
