@@ -3,7 +3,7 @@ import requests
 import re
 
 CONTEST_URL_PATTERN = r"(?:^https://)?atcoder.jp/contests/([^/]+)(?:/.+)?"
-STANDARD_PROBLEM_NUM = 6
+STANDARD_PROBLEM_NUM = 8
 
 # Atcoder Problems API
 ALL_CONTEST_URL = "https://kenkoooo.com/atcoder/resources/contests.json"
