@@ -8,7 +8,6 @@ KA = [(int(input()), list(map(int, input().split()))) for _ in range(M)]
 # M = 2
 # KA = [[N//2, [j+1 for j in range(N//2)]] for _ in range(M)]
 
-
 K, A = zip(*KA)
 
 top = [0]*N
