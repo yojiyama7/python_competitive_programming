@@ -20,6 +20,9 @@ def rotate90(x):
     ans = [''.join(xzip_i)[::-1] for xzip_i in zip(*x)]
     return ans
 
+# def rotate90(x):
+#     return list(map(list, zip(*x[::-1])))
+
 s = strip(S)
 t = strip(T)
 for i in range(4):
