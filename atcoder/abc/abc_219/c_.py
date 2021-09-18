@@ -12,7 +12,7 @@ def f(x):
 # l = [(f(s), s) for s in S]
 # l.sort()
 # for _, li in l:
-    # print(li)
+#     print(li)
 
 ans = sorted(S, key=f)
 print(*ans, sep='\n')
