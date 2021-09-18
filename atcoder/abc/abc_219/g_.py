@@ -64,4 +64,3 @@ for i, pi in enumerate(p):
     uf.unite(i, pi)
 
 print(*[uf.root(i) for i in range(N)])
-
