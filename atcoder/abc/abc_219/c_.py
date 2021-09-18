@@ -9,7 +9,10 @@ def f(x):
     ans = ''.join(chr(li) for li in l)
     return ans
 
-l = [(f(s), s) for s in S]
-l.sort()
-for _, li in l:
-    print(li)
+# l = [(f(s), s) for s in S]
+# l.sort()
+# for _, li in l:
+    # print(li)
+
+ans = sorted(S, key=f)
+print(*ans, sep='\n')
