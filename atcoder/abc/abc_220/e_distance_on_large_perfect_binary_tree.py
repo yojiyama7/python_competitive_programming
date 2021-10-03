@@ -1,3 +1,26 @@
+
+
+################################
+
+# MOD = 10**9+7
+
+# N, D = map(int, input().split())
+
+# ans = 0
+# b_ans = 0
+# for i in range(N):
+#     if i+D < N:
+#         ans += (D-1) * pow(2, D, MOD)
+#         ans %= MOD
+#     else:
+#         x, y = D+i-N, min(D, N-i)
+#         ans += (y-x) * pow(2, D, MOD)
+#         ans %= MOD
+#     print(i, ans-b_ans)
+#     b_ans = ans
+
+# print(ans)
+
 ################################
 
 # # NO SUB
