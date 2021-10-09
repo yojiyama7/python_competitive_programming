@@ -1,4 +1,30 @@
+MOD = 998244353
 
+N, D = map(int, input().split())
+
+ans = 0
+for i in range(N):
+    x = 0
+    if i+D < N:
+        x += pow(2, D, MOD) * 2
+        # print((i, ), pow(2, D, MOD) * 2)
+        x %= MOD
+    if D >= 2:
+        a_max = min(N-1-i, D-1)
+        a_min = D-a_max
+        # print((i,), [a_min, a_max])
+        if a_min <= a_max:
+            x += pow(2, D-2, MOD) * 2 * (a_max - a_min + 1)
+            # print((i,), [a_min, a_max], pow(2, D-2, MOD) * 2 * (a_max - a_min + 1))
+            x %= MOD
+    x *= pow(2, i, MOD)
+    x %= MOD
+    ans += x
+    ans %= MOD
+    # print(x, ans)
+    
+
+print(ans)
 
 ################################
 
