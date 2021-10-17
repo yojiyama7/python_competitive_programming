@@ -5,7 +5,7 @@ def to_num(c):
     return "GCP".find(c)
 def janken(a_hand, b_hand):
     x, y = to_num(a_hand), to_num(b_hand)
-    return "dba"[(x - y + 3) % 3] 
+    return "dba"[(x - y + 3) % 3]
 
 players = [[i, a, 0] for i, a in enumerate(A)]
 sort_key = (lambda x: (-x[2], x[0]))
