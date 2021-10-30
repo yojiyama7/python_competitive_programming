@@ -11,7 +11,6 @@ if many_egdes_cnt == 1:
 else:
     print("No")
 
-
 ################################
 
 # N = int(input())
