@@ -1,10 +1,38 @@
+# 配るdp, 桁dp
+
 N = input()
 K = int(input())
 
-n = list(map(int, "{0:0<102}".format(N)))
+N_len = len(N)
 
-# def solve(N, K, smaller):
+# dp[i][j][sm]: i文字目までXとしたとき、X[と等しい, 未満の][sm]数で、0でない数がj個あるパターン
+dp = [[[0 for _ in range(2)] for _ in range(K+1)] for _ in range(N_len+1)]
+dp[0][0][0] = 1
+for i, n in enumerate(N):
+    n = int(n)
+    for j in range(K+1):
+        for k in range(10):
+            if k == n:
+                if j+(k!=0) <= K:
+                    dp[i+1][j+(k!=0)][0] += dp[i][j][0]
+            elif k < n:
+                if j+(k!=0) <= K:
+                    dp[i+1][j+(k!=0)][1] += dp[i][j][0]
 
+            if j+(k!=0) <= K:
+                dp[i+1][j+(k!=0)][1] += dp[i][j][1]
+
+ans = sum(dp[N_len][K])
+print(ans)
+
+################################
+
+# N = input()
+# K = int(input())
+
+# n = list(map(int, "{0:0<102}".format(N)))
+
+# # def solve(N, K, smaller):
 
 ################################
 
