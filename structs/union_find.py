@@ -2,10 +2,9 @@ class UnionFind:
     def __init__(self, n):
         self.par = [-1]*n
         self.size = [1]*n
-        self.point = n*(n-1) // 2
 
     def root(self, x):
-        if self.par[x] < 0:
+        if self.par[x] == -1:
             return x
         self.par[x] = self.root(self.par[x])
         return self.par[x]
@@ -18,7 +17,6 @@ class UnionFind:
         # size において rx>ry にする
         if self.size[rx] < self.size[ry]:
             rx, ry = ry, rx
-        self.point -= self.size[rx]*self.size[ry]
         self.size[rx] += self.size[ry]
         # ryの親をrxに設定 (sizeにおいて "小さい方(ry)を大きい方(rx)に" つなげる)
         self.par[ry] = rx
