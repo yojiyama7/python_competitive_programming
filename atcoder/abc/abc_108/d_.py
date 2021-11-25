@@ -1,3 +1,36 @@
+# i と N-i-1 を +1 したり -1 したりするのしんどい
+# AC
+
+L = int(input())
+
+N = 20
+edges = []
+for i in range(N-1):
+    edges.append((i, i+1, 0))
+
+ni = 0
+while ni < N:
+    bi = N-ni-1
+    if (L>>bi)&1:
+        ni += 1
+        break
+    ni += 1
+while ni < N:
+    bi = N-ni-1
+    edges.append((ni-1, ni, L>>(bi+1)))
+    if (L>>bi)&1:
+        edges.append((0, ni, (L>>bi)-1))
+    ni += 1
+
+print(N, len(edges))
+for e in edges:
+    a, b, x = e
+    a += 1
+    b += 1
+    print(a, b, x)
+
+################################
+
 # 詰め甘 わからん
 # ? になっている
 
