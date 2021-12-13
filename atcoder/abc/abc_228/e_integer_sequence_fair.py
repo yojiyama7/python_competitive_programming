@@ -5,6 +5,7 @@ N, K, M = map(int, input().split())
 # 答え = M**(K**N)
 # フェルマーの小定理
 
+# これ忘れるのどうにかならんの
 if M%MOD == 0:
     ans = 0
 else:
