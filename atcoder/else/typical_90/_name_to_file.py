@@ -28,7 +28,8 @@ S = input()
 if S == "":
 	exit()
 
-file_name = "_" + to_snake_case(S) + ".py"
+# file_name = "_" + to_snake_case(S) + ".py"
+file_name = to_snake_case(S) + ".py"
 with open(file_name, "w+", encoding="utf-8") as f:
 	pass
 
