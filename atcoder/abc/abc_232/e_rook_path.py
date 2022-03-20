@@ -3,21 +3,28 @@ MOD = 998244353
 H, W, K = map(int, input().split())
 X1, Y1, X2, Y2 = map(int, input().split())
 
+# print(W, H)
 acnt, bcnt, ccnt, dcnt = 1, W-1, H-1, (W-1)*(H-1)
-a, b, c, d = [1, 0, 0, 0]
-for _ in range(1, K+1):
+# print(acnt, bcnt, ccnt, dcnt)
+a, b, c, d = 1, 0, 0, 0
+for i in range(K):
     na = b*bcnt + c*ccnt
     nb = d*(H-1) + b*(bcnt-1) + a
     nc = d*(W-1) + c*(ccnt-1) + a
+    # print(ccnt)
+    # print("c:", d*(W-1), c*(ccnt-1), a)
     nd = d*(W-2 + H-2) + b + c
     a, b, c, d = na%MOD, nb%MOD, nc%MOD, nd%MOD
-xeq = (X1 == X2)
-yeq = (Y1 == Y2)
-if xeq and yeq:
+    # if i < 3:
+    #     print(a, b, c, d)
+row_eq = (X1 == X2)
+column_eq = (Y1 == Y2)
+# print(xeq, yeq)
+if row_eq and column_eq:
     print(a)
-elif yeq:
+elif row_eq:
     print(b)
-elif xeq:
+elif column_eq:
     print(c)
 else:
     print(d)
