@@ -23,6 +23,8 @@ ALL_CONTEST_IDS = set(c['id'] for c in ALL_CONTESTS)
 ALL_PROBLEMS = requests.get(ALL_PROBLEMS_URL).json()
 CONTEST_PROBLEMS_DICT = dict(groupby_sorted(ALL_PROBLEMS, key=lambda x:x["contest_id"]))
 
+# print(*CONTEST_PROBLEMS_DICT["typical90"], sep='\n')
+
 def to_contest_id(url):
     match_obj = re.search(CONTEST_URL_PATTERN, url)
     if match_obj:
